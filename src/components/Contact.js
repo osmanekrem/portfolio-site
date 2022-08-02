@@ -29,7 +29,7 @@ const contactData = [
 
 function Contact() {
   return (
-    <div className='contact'>
+    <div id='contact' className='contact'>
         <div className='contact-header'>
             <h1>Contact</h1>
 

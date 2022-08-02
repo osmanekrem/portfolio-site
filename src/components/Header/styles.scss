@@ -1,0 +1,30 @@
+.header {
+    position: fixed;
+    top: 0;
+    height: 60px;
+    background: linear-gradient(to bottom,  #333 70%, transparent);
+    z-index: 50;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow-x: auto;
+    nav {
+        ul {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            list-style: none;
+            padding: 0;
+            li {
+                a {
+                    color: #eaeaea;
+                    text-decoration: none;
+                    transition: all 0.2s ease-in-out;
+                }
+            }
+        }
+    }
+}

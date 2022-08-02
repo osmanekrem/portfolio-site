@@ -1,4 +1,6 @@
 import React from 'react'
+import "./styles.scss"
+
 import { Link } from 'react-router-dom'
 
 const blogData = [
@@ -25,24 +27,32 @@ const blogData = [
     }
   ]
 
-function Blog() {
+function index() {
   return (
-    <div id='blog' className='blog'>
-      <div className='blog-header'>
-        <h2>Blog</h2>
-        <Link to={'blog'}>See All Blogs</Link>
-      </div>
-      <div className='blog-content'>
+    <div className='blog-page'>
+        <div className='top'>
+            <Link to={"/"} className='back-arrow'>
+                <svg xmlns="http://www.w3.org/2000/svg" fill='currentColor' height="48" width="48"><path d="M28.05 36 16 23.95 28.05 11.9l2.15 2.15-9.9 9.9 9.9 9.9Z"/></svg>
+            </Link>
+        </div>
+
+    <div className='blog'>
+        <div>
+            <h1>Blog</h1>
+        </div>
+        <div className='blog-content'>
+
         {blogData.map(blog => (
-          <Link to={`blog/${blog.id}`} className='blog-post' key={blog.id}>
+          <Link to={`/blog/${blog.id}`} className='blog-post' key={blog.id}>
             <img src={blog.img} alt={blog.title} />
             <p>{blog.date}</p>
             <h3>{blog.title}</h3>
           </Link>
         ))}
-      </div>
+        </div>
+    </div>
     </div>
   )
 }
 
-export default Blog
+export default index

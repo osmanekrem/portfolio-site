@@ -50,7 +50,7 @@ const content = {
 function Portfolio() {
     const [activeTab, setActiveTab] = useState("featured")
   return (
-    <div className='portfolio'>
+    <div id='portfolio' className='portfolio'>
         <div className='portfolio-header'>
             <h1>Portfolio</h1>
             <ul>

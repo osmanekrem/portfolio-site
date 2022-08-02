@@ -2,7 +2,7 @@ import React from 'react'
 
 function About() {
   return (
-    <div className='about'>
+    <div id='about' className='about'>
         <img src="https://avatars.githubusercontent.com/u/96390357?s=400&u=f929969b02335972b9f54385302cd9e42d57be92&v=4" alt="logo" className="logo" />
         <div>            
             <h1>Who is Osman Ekrem Korkmaz?</h1>

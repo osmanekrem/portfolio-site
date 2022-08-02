@@ -21,7 +21,7 @@ const skills = [
 
 function Skills() {
   return (
-    <div className='skills'>
+    <div id='skills' className='skills'>
             <h1>My Skills</h1>
             <div className='skills-container'>
                 {skills.map(skill => (
