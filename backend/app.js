@@ -11,7 +11,7 @@ const blogRoute = require("./routes/blogRoute")
 const app = express();
 
 mongoose
-    .connect("mongodb://0.0.0.0/portfolio-site")
+    .connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.gndbsrg.mongodb.net/?retryWrites=true&w=majority/portfolio-site`)
     .then(() => console.log("DB connected"))
     .catch(() => console.log("DB not Connnected"));
 

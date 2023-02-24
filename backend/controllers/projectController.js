@@ -43,7 +43,7 @@ exports.createProject = async (req, res) => {
             const project = await Project.create({
                 ...req.body,
                 categories:req.body.categories.split(",") ,
-                image:'http://localhost:3000/uploads/' + uploadedImage.name
+                image:'https://oeapi.onrender.com/uploads/' + uploadedImage.name
             });
             res.status(201).json({
                 status: "success",

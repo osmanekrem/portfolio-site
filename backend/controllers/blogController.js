@@ -35,7 +35,7 @@ module.exports.createBlog = async (req, res) => {
     uploadedImage.mv(uploadPath, async () => {
         const blog = await Blog.create({
           ...req.body,
-          image:'http://localhost:3000/uploads/' + uploadedImage.name
+          image:'https://oeapi.onrender.com/uploads/' + uploadedImage.name
         });
         res.status(201).json({ success: true, data: blog });
     })
