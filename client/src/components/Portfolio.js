@@ -10,12 +10,12 @@ function Portfolio() {
     const [filteredProjects, setFilteredProjects] = useState([])
     const [categories, setCategories] = useState([{name: "All", _id:""}])
     useEffect(() => {
-        axios.get("http://localhost:3000/categories").then(res => {
+        axios.get(process.env.REACT_APP_API_BASE_URL+"/categories").then(res => {
             setCategories([{name: "All", _id:""}, ...res.data.categories])
         }).catch((error) => {
             console.log(error)
         })
-        axios.get(`http://localhost:3000/projects`).then(res => {
+        axios.get(process.env.REACT_APP_API_BASE_URL+"/projects").then(res => {
             setProjects(res.data.projects)
             setFilteredProjects(res.data.projects)
         }).catch((error) => {
