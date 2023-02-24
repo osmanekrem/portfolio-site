@@ -31,9 +31,14 @@
         justify-content: center;
         gap: 1rem;
         .blog-content {
+            max-width: 1100px;
             img {
                 width: 100%;
+                aspect-ratio: 16/9;
+                object-fit: cover;
                 height: auto;
+                border-radius: 12px;
+                
         }
             max-width: 900px;
             display: flex;

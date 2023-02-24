@@ -1,56 +1,13 @@
 import {useEffect, useState} from 'react'
 import axios from "axios"
 
-const data = [
-    {
-        id: 1,
-        title: 'Getir Clone',
-        description: 'A clone of Getir.com',
-        image: 'https://user-images.githubusercontent.com/96390357/167805190-1900428c-3ab2-437f-b414-ff1fa8806660.png',
-        link: 'https://react-getir.netlify.app/',
-        github: 'https://github.com/OsmanEkremKorkmaz/getir.com-clone',
-        tags: ["featured", "web"]
-    },
-    {
-        id: 2,
-        title: 'Youtube Downloader',
-        description: 'A simple youtube downloader built with React and Flask',
-        image: 'https://user-images.githubusercontent.com/96390357/165584065-8aac5391-0034-4dbb-9c2c-9e737e155c5c.png',
-        link: false,
-        github: 'https://github.com/OsmanEkremKorkmaz/Youtube-downloader',
-        tags: ["featured", "web"]
-    },
-    {
-        id: 4,
-        title: 'Notes App',
-        description: 'A simple notes app built with React and Redux',
-        image: 'https://user-images.githubusercontent.com/96390357/168649947-0e3437cb-ab2d-476e-8bf3-c4d8435443de.png',
-        link: 'https://react-notesapp.surge.sh/',
-        github: 'https://github.com/OsmanEkremKorkmaz/notes-app',
-        tags: ["featured", "design"]
-    },
-    {
-        id: 5,
-        title: 'BMI Calculator',
-        description: 'A simple BMI calculator built with React',
-        image: 'https://user-images.githubusercontent.com/96390357/176927543-85f7db8d-9a5e-481d-a1f3-77cdc4e1b33c.png',
-        link: 'https://bmi-calculator-react.surge.sh/',
-        github: 'https://github.com/OsmanEkremKorkmaz/BMI-calculator-react',
-        tags: ["featured", "web"]
-    }
-]
-
-const content = {
-    "featured": data.filter(item => item.tags.includes("featured")),
-    "web": data.filter(item => item.tags.includes("web")),
-    "design": data.filter(item => item.tags.includes("design")) 
-}
-    
+  
         
 
 function Portfolio() {
     const [activeTab, setActiveTab] = useState({name: "All", _id:""})
     const [projects, setProjects] = useState([])
+    const [filteredProjects, setFilteredProjects] = useState([])
     const [categories, setCategories] = useState([{name: "All", _id:""}])
     useEffect(() => {
         axios.get("http://localhost:3000/categories").then(res => {
@@ -58,13 +15,17 @@ function Portfolio() {
         }).catch((error) => {
             console.log(error)
         })
-        axios.get(`http://localhost:3000/projects?category_id=${activeTab._id}`).then(res => {
+        axios.get(`http://localhost:3000/projects`).then(res => {
             setProjects(res.data.projects)
+            setFilteredProjects(res.data.projects)
         }).catch((error) => {
             console.log(error)
         })
+    }, [])
+    useEffect(() => {
+        setFilteredProjects((activeTab.name==="All") ? projects : projects.filter(project => project.categories.includes(activeTab._id)))
+ 
     }, [activeTab])
-    console.log(categories)
   return (
     <div id='portfolio' className='portfolio'>
         <div className='portfolio-header'>
@@ -76,7 +37,7 @@ function Portfolio() {
             </ul>
         </div>
         <div className='portfolio-content'>
-            {projects.map(item => (
+            {filteredProjects.map(item => (
                 <div className='portfolio-item' key={item._id}>
                     <div className='portfolio-item-content'>
                         <img src={item.image} alt={item.name} />

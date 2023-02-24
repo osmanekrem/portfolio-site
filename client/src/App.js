@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import Blogs from "./pages/Blogs";
 
 import './styles.scss';
+import Login from "./pages/Login";
+import Dasboard from "./pages/Dashboard";
 
 function App() {
   return (
@@ -11,7 +13,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<Blogs />} />
-        <Route path="/blog/:id" element={<Blog />} />
+        <Route path="/blog/:slug" element={<Blog />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dasboard />} />
 
       </Routes>
 

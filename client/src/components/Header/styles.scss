@@ -25,6 +25,17 @@
                     transition: all 0.2s ease-in-out;
                 }
             }
+            .dashboard, .add-blog {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                background-color: #1989eb;
+                padding: 8px 12px;
+                border-radius: 6px;
+                color: #eaeaea;
+            }
         }
     }
 }

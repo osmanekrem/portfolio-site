@@ -1,8 +1,22 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 function Hello() {
-  const {blogs} = useSelector(state => state.blogs)
+  const [blogs, setBlogs] = useState([])
+
+  const getBlogs = async () => {
+    try {
+      const response = await axios.get(process.env.REACT_APP_API_BASE_URL+'/blogs');
+      setBlogs(response.data.data)
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getBlogs()
+  },[])
   return (
     <div id='home' className='intro'>
       Hi there I'm <span>Osman Ekrem Korkmaz</span>

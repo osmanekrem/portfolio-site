@@ -31,6 +31,7 @@
   gap: 1rem;
 }
 .blog-page main .blog-content {
+  max-width: 1100px;
   max-width: 900px;
   display: flex;
   flex-direction: column;
@@ -40,7 +41,11 @@
 }
 .blog-page main .blog-content img {
   width: 100%;
+  aspect-ratio: 16/9;
+  -o-object-fit: cover;
+     object-fit: cover;
   height: auto;
+  border-radius: 12px;
 }
 .blog-page main .blog-content p {
   text-align: left;

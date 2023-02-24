@@ -21,10 +21,10 @@ const ProjectSchema = new Schema({
         type: Date,
         default: Date.now()
     },
-    category_id: {
+    categories: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "ProjectCategory"
-    }
+    }]
 })
 
 const Project = mongoose.model("Project", ProjectSchema)

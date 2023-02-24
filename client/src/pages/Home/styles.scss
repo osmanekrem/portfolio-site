@@ -71,12 +71,12 @@
                 height: auto;
             }
             h1{
-                max-width: 900px;
+                max-width: 800px;
                 margin-bottom: 2rem;
                 font-size: 2rem;
             }
             h2{
-                max-width: 900px;
+                max-width: 800px;
                 margin-bottom: 2rem;
                 font-size: 1.5rem;
                 text-align: left;
@@ -88,7 +88,7 @@
 
             }
             p {
-                max-width: 900px;
+                max-width: 800px;
                 font-size: 1.25rem;
                 text-align: left;
             }
@@ -174,12 +174,15 @@
                     padding: 0;
                     list-style: none;
                     display: flex;
+                    flex-wrap: wrap;
                     gap: 10px;
                     li {
                         cursor: pointer;
                         padding: 8px 16px;
                         border-radius: 50px;
+                        white-space: nowrap;
                         transition: all 0.2s ease-in-out;
+                        background-color: #444;
                         &.active {
                             background-color: #1989eb;
                         }
@@ -191,11 +194,11 @@
                 gap: 1rem;
                 max-width: 1100px;
                 width: 100%;
-                overflow-x: auto;
+                flex-wrap: wrap;
                 justify-content: center;
                 .portfolio-item {
                     background-color: #444;
-                    max-width: 350px;
+                    max-width: 300px;
                     width: 100%;
                     min-width: 200px;
                     padding: 20px;
@@ -214,7 +217,8 @@
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            object-fit: contain;
+                            object-fit: cover;
+                            aspect-ratio: 16 / 9;
         
                             padding: 0;
                             width: 100%;
@@ -378,7 +382,8 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        object-fit: contain;
+                        object-fit: cover;
+                        aspect-ratio: 16/9;
                         border-radius: 10px;
     
                         width: 100%;

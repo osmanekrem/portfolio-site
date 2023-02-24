@@ -63,6 +63,13 @@
   -o-object-fit: contain;
      object-fit: contain;
   border-radius: 8px;
+  aspect-ratio: 16/9;
+  -o-object-fit: cover;
+     object-fit: cover;
   width: 100%;
   height: auto;
+}
+
+.no-blog {
+  text-align: center;
 }/*# sourceMappingURL=styles.css.map */

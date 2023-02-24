@@ -1,0 +1,174 @@
+.blog-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -o-object-fit: contain;
+     object-fit: contain;
+  padding: 8px 12px;
+  width: 100%;
+  border-radius: 8px;
+  min-height: 75px;
+  background-color: #444;
+  height: auto;
+}
+
+.blogs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.blogs h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.blogs .blog-form {
+  border: 4px solid #444;
+  max-width: calc(400px + 1rem);
+  background-color: transparent !important;
+  max-width: 1100px;
+  width: 100%;
+  min-width: 150px;
+  padding: 12px;
+  border-radius: 12px;
+  display: flex;
+}
+.blogs .blog-form form {
+  gap: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  flex-direction: row !important;
+  align-items: baseline !important;
+  margin-bottom: auto;
+}
+.blogs .blog-form form div {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+.blogs .blog-form form div label {
+  width: 100%;
+  cursor: pointer;
+}
+.blogs .blog-form form div label img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 8px;
+}
+.blogs .blog-form form div label::after {
+  content: "";
+  padding-bottom: 50%;
+}
+.blogs .blog-form form div div {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+.blogs .blog-form form div div input, .blogs .blog-form form div div textarea {
+  max-width: calc(100% - 24px);
+  width: 100%;
+  min-width: 100px;
+}
+.blogs .blog-form form div div textarea {
+  resize: none;
+  height: 100%;
+}
+.blogs .blog-form form input {
+  max-width: calc(100% - 24px);
+  width: 100%;
+  min-width: 100px;
+}
+.blogs .blog-content {
+  display: flex;
+  gap: 1rem;
+  max-width: 1100px;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.blogs .blog-content .blog-item {
+  position: relative;
+  background-color: #444;
+  max-width: 225px;
+  width: 100%;
+  min-width: 175px;
+  padding: 12px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.blogs .blog-content .blog-item button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  justify-content: center;
+  background-color: transparent;
+  outline: none;
+  border: 0;
+  border-radius: 999px;
+  color: #eaeaea;
+  fill: #eaeaea;
+  transition: transform 0.2s ease-in-out;
+  background-color: #444;
+}
+.blogs .blog-content .blog-item .blog-item-content {
+  gap: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.blogs .blog-content .blog-item .blog-item-content img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+  aspect-ratio: 16/9;
+  padding: 0;
+  width: 100%;
+  border-radius: 8px;
+  height: auto;
+}
+.blogs .blog-content .blog-item .blog-item-content h3 {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #eaeaea;
+  margin: 0;
+}
+.blogs .blog-content .blog-item .blog-item-content p {
+  color: #eaeaea;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+}
+.blogs .blog-content .blog-item .blog-item-content a {
+  color: #00bcd4;
+  text-align: right;
+}
+.blogs .blog-content .blog-item .blog-item-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  width: 100%;
+}
+.blogs .blog-content .blog-item .blog-item-links a {
+  color: #eaeaea;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+.blogs .blog-content .blog-item .blog-item-links a.demo-link {
+  color: #00bcd4;
+}
+.blogs .blog-content .blog-item .blog-item-links a.demo-link:hover {
+  text-decoration: underline;
+}/*# sourceMappingURL=styles.css.map */
