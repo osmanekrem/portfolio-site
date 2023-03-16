@@ -31,7 +31,6 @@
         justify-content: center;
         gap: 1rem;
         .blog-content {
-            max-width: 1100px;
             img {
                 width: 100%;
                 aspect-ratio: 16/9;
@@ -58,9 +57,16 @@
             justify-content: flex-start;
             text-align: center;
             gap: 1rem;
+            max-width: 500px;
             padding: 20px;
             height: auto;
+            .ads {
+                display: flex;
+                flex: 1;
+                width: 100%;
+            }
             ul {
+                overflow-y: auto;
                 list-style: none;
                 margin: 0;
                 padding: 0;
@@ -68,11 +74,19 @@
                     a {
                         display: flex;
                         align-items: center;
-                        justify-content: center;
+                        text-align: left;
+                        max-width: 500px;
+                        
                         gap: 1rem;
                         color: #eaeaea;
                         h3, p {
                             margin: 0;
+                        }
+                        h3 {
+                            max-width: 300px;
+                            overflow: hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
                         }
                         margin: 20px 0;
                         padding: 16px 32px;
