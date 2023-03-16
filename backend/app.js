@@ -29,7 +29,7 @@ app.use("/api/categories", projectCategoryRoute)
 app.use("/api/user", userRoute)
 app.use("/api/blogs", blogRoute)
 
-const port = 3000;
+const port = process.env.API_PORT || 3000;
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
