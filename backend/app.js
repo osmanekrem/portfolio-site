@@ -7,11 +7,13 @@ const projectRoute = require("./routes/projectRoute")
 const projectCategoryRoute = require("./routes/projectCategoryRoute")
 const userRoute = require("./routes/userRoute")
 const blogRoute = require("./routes/blogRoute")
+const dotenv = require('dotenv')
 
 const app = express();
 
+dotenv.config()
 mongoose
-    .connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.gndbsrg.mongodb.net/?retryWrites=true&w=majority/portfolio-site`)
+    .connect(process.env.MONGO_URL)
     .then(() => console.log("DB connected"))
     .catch(() => console.log("DB not Connnected"));
 
@@ -22,10 +24,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
 app.use(methodOverride('_method'));
 
-app.use("/projects", projectRoute)
-app.use("/categories", projectCategoryRoute)
-app.use("/user", userRoute)
-app.use("/blogs", blogRoute)
+app.use("/api/projects", projectRoute)
+app.use("/api/categories", projectCategoryRoute)
+app.use("/api/user", userRoute)
+app.use("/api/blogs", blogRoute)
 
 const port = 3000;
 
