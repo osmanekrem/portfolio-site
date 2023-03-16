@@ -29,8 +29,9 @@ app.use("/api/categories", projectCategoryRoute)
 app.use("/api/user", userRoute)
 app.use("/api/blogs", blogRoute)
 
-const port = process.env.API_PORT || 3000;
+if(process.env.API_PORT){
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+    app.listen(process.env.API_PORT)
+}
+
+module.exports = app
