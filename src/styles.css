@@ -27,7 +27,7 @@
   width: 12px;
 }
 *::-webkit-scrollbar-thumb {
-  background: hsla(0deg, 0%, 100%, 0.3);
+  background: hsla(0, 0%, 100%, 0.3);
   min-height: 30px;
   width: 12px;
 }

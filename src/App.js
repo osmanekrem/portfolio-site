@@ -2,6 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import Blog from "./pages/Blog";
 import Home from "./pages/Home";
 import Blogs from "./pages/Blogs";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 import './styles.scss';
 import Login from "./pages/Login";

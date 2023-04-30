@@ -16,9 +16,10 @@ function About() {
                   delay: 40,
                   loop: true,
                   strings: [
-                    "Full Stack Web Developer",
+                    "Web Developer",
                     "Beşiktaş Fan",
-                    "Turk"
+                    "Turk",
+                    "Muslim"
                   ]
                 }}
                 />
@@ -32,7 +33,6 @@ I started the software with arduino and then I learned languages ​​such as p
             </p>
             </div>
         </div>
-        <img src="logo.png" alt="logo" className="logo" />
     </div>
   )
 }

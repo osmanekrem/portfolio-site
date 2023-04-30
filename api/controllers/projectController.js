@@ -36,14 +36,16 @@ exports.createProject = async (req, res) => {
             fs.mkdirSync(uploadDir);
         }
 
+        let name = Date.now() + "-" + Math.round(Math.random() * 1e9)
+
         let uploadedImage = req.files.image;
-        let uploadPath = __dirname + '/../public/uploads/' + uploadedImage.name;
+        let uploadPath = __dirname + '/../public/uploads/' + name + ".jpg";
         uploadedImage.mv(uploadPath, async () => {
 
             const project = await Project.create({
                 ...req.body,
                 categories:req.body.categories.split(",") ,
-                image:'https://oeapi.onrender.com/uploads/' + uploadedImage.name
+                image:'https://oeapi.onrender.com/uploads/' + name + ".jpg"
             });
             res.status(201).json({
                 status: "success",

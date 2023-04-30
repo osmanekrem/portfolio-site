@@ -22,7 +22,6 @@ const skills = [
 function Skills() {
   return (
     <div id='skills' className='skills'>
-            <h1>My Skills</h1>
             <div className='skills-container'>
                 {skills.map(skill => (
                     <div className='skill' key={skill}>

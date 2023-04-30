@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app",
-    "dev": "nodemon app"
+    "start": "node index.js",
+    "dev": "nodemon"
   },
   "keywords": [],
   "author": "Osman EKrem Korkmaz",
