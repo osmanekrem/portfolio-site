@@ -29,9 +29,6 @@ app.use("/api/categories", projectCategoryRoute)
 app.use("/api/user", userRoute)
 app.use("/api/blogs", blogRoute)
 
-if(process.env.API_PORT){
-
-    app.listen(process.env.API_PORT)
-}
+app.listen(process.env.API_PORT || 3000)
 
 module.exports = app
