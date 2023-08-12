@@ -11,7 +11,7 @@ const contactData = [
     {
         id: 2,
         title: 'Github',
-        link: 'https://github.com/OsmanEkremKorkmaz',
+        link: 'https://github.com/osmanekrem',
         logo: "/imgs/github.svg"
     },
     {
@@ -38,7 +38,7 @@ function Contact() {
   return (
     <div className='contact'>
         {contactData.map(item => (
-            <a href={item.link} className='contact-item' key={item.id}>
+            <a target='_blank' href={item.link} className='contact-item' key={item.id}>
                 <ReactSVG src={item.logo} />
             </a>
         ))}
