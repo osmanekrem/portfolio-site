@@ -100,7 +100,7 @@ export default function LoginPage() {
           )}
 
           <Button disabled={isPending} className="w-full" type="submit">
-            Submit
+            Log in
           </Button>
         </form>
       </Form>

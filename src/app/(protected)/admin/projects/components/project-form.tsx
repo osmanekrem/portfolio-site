@@ -130,16 +130,18 @@ export default function ProjectForm({
             </FormItem>
           )}
         />
+        <div className="col-span-full gap-4 grid grid-cols-1 lg:grid-cols-2 ">
         <FormField
           control={form.control}
           name="description"
           render={({ field }) => (
-            <FormItem className="col-span-full">
+            <FormItem className="flex flex-col">
               <FormLabel>Description</FormLabel>
               <FormControl>
                 <Textarea
                   disabled={isPending}
                   placeholder="Description"
+                  className="flex-1"
                   {...field}
                 />
               </FormControl>
@@ -151,7 +153,7 @@ export default function ProjectForm({
           control={form.control}
           name="image"
           render={({ field }) => (
-            <FormItem className="col-span-full">
+            <FormItem >
               <FormLabel>Image</FormLabel>
               <FormControl className="">
                 <div className="border aspect-video flex items-center justify-center rounded overflow-hidden">
@@ -167,6 +169,7 @@ export default function ProjectForm({
             </FormItem>
           )}
         />
+        </div>
         <FormField
           control={form.control}
           name="liveUrl"
