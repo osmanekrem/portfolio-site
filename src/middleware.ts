@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import authConfig from "@/auth.config";
 import { DEFAULT_LOGIN_REDIRECT, apiAuthPrefix, authRoutes, publicRoutes } from "@/routes";
+import { analytics } from "./utils/analytics";
 
 const { auth } = NextAuth(authConfig);
 
@@ -11,6 +12,17 @@ export default auth((req) => {
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix)
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname)
   const isAuthRoute = authRoutes.includes(nextUrl.pathname)
+
+  if(nextUrl.pathname === "/") {
+    try {
+      analytics.track("pageview", {
+        page: "/",
+        country: req.geo?.country
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  }
 
   if(isApiAuthRoute) {
     return

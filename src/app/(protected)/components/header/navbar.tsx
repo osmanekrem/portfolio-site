@@ -27,8 +27,8 @@ export default function Navbar() {
       label: "Projects",
     },
     {
-      path: "/admin/skills",
-      label: "Skills",
+      path: "/admin/analytics",
+      label: "Analytics",
     },
   ];
 
