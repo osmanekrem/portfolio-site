@@ -13,6 +13,9 @@ export const metadata: Metadata = {
     default: "Osman Ekrem",
   },
   description: "Osman Ekrem portfolio site",
+  twitter: {
+    card: "summary_large_image"
+  }
 };
 
 export default function RootLayout({

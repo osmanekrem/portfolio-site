@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: /api/
-Disallow: /login
-
-Sitemap: https://osmanekrem.vercel.app/sitemap.txt

@@ -10,8 +10,10 @@ export default auth((req) => {
   const isLoggedIn = !!req.auth;
 
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix)
+  const isAdminRoute = nextUrl.pathname.startsWith(DEFAULT_LOGIN_REDIRECT)
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname)
   const isAuthRoute = authRoutes.includes(nextUrl.pathname)
+  
 
   if(nextUrl.pathname === "/") {
     try {
@@ -35,7 +37,7 @@ export default auth((req) => {
     return
   }
 
-  if(!isLoggedIn && !isPublicRoute) {
+  if(!isLoggedIn && !isPublicRoute && isAdminRoute) {
     return Response.redirect(new URL("/login", nextUrl))
   }
 
