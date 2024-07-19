@@ -12,9 +12,16 @@ export const metadata: Metadata = {
     template: "%s | Osman Ekrem",
     default: "Osman Ekrem",
   },
-  description: "Osman Ekrem portfolio site",
+  description: "Osman Ekrem's portfolio site",
   twitter: {
     card: "summary_large_image"
+  },
+  openGraph: {
+    title: "Osman Ekrem",
+    description: "Osman Ekrem's portfolio site",
+    url: "https://osmanekrem.vercel.app",
+    siteName: "Osman Ekrem",
+    type: "website"
   }
 };
 
