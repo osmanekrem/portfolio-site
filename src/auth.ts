@@ -1,26 +1,72 @@
-import NextAuth from "next-auth";
-import { PrismaAdapter } from "@auth/prisma-adapter";
-import authConfig from "@/auth.config";
-import { db } from "./lib/db";
+import { db } from "@/db/drizzle";
+import { users } from "@/db/schema";
+import { compare } from "bcryptjs";
+import { eq } from "drizzle-orm";
+import NextAuth, { User } from "next-auth";
 
-export const {
-  handlers: { GET, POST },
-  auth,
-  signIn,
-  signOut
-} = NextAuth({
-  callbacks: {
-    async session({token, session}) {
-      if(token.sub && session.user) {
-        session.user.id = token.sub
-      }
-      return session
-    },
-    async jwt({token}) {
-      return token
-    }
+import CredentialsProvider from "next-auth/providers/credentials";
+
+export const { handlers, auth, signIn, signOut } = NextAuth({
+  session: {
+    strategy: "jwt",
   },
-  adapter: PrismaAdapter(db),
-  session: { strategy: "jwt" },
-  ...authConfig,
+  providers: [
+    CredentialsProvider({
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) {
+          return null;
+        }
+
+        const user = await db
+          .select()
+          .from(users)
+          .where(eq(users.email, credentials.email.toString()))
+          .limit(1);
+
+        console.log(user);
+
+        if (user.length === 0) {
+          return null;
+        }
+
+        const isPasswordValid = await compare(
+          credentials.password.toString(),
+          user[0].password
+        );
+
+        console.log(isPasswordValid);
+
+        if (!isPasswordValid) {
+          return null;
+        }
+
+        return {
+          id: user[0].id,
+          email: user[0].email,
+          name: user[0].fullName,
+        } as User;
+      },
+    }),
+  ],
+  pages: {
+    signIn: "/login",
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.name = user.name;
+      }
+
+      return token;
+    },
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.id as string;
+        session.user.name = token.name as string;
+      }
+
+      return session;
+    },
+  },
 });

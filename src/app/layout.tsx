@@ -2,42 +2,64 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "next-themes";
+import { Toaster } from "@/components/ui/toaster";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/auth";
 
-const inter = Poppins({ weight: ["400","500","600","700"], subsets: ["latin-ext"] });
+const inter = Poppins({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin-ext"],
+});
 
 export const metadata: Metadata = {
   title: {
     template: "%s | Osman Ekrem",
     default: "Osman Ekrem",
   },
+  keywords: [
+    "Osman Ekrem",
+    "portfolio",
+    "web developer",
+    "software engineer",
+    "Osman",
+    "Ekrem",
+  ],
   description: "Osman Ekrem's portfolio site",
   twitter: {
-    card: "summary_large_image"
+    card: "summary_large_image",
   },
   openGraph: {
     title: "Osman Ekrem",
     description: "Osman Ekrem's portfolio site",
     url: "https://osmanekrem.vercel.app",
     siteName: "Osman Ekrem",
-    type: "website"
-  }
+    type: "website",
+  },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+
   return (
-    <html suppressHydrationWarning lang="en">
-      <body className={cn(inter.className, "antialised h-screen w-full flex flex-col overflow-x-hidden overflow-y-auto")}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-        </ThemeProvider>
-        <Toaster richColors   />
-      </body>
+    <html lang="en" suppressHydrationWarning>
+      <SessionProvider session={session}>
+        <body
+          className={cn(
+            inter.className,
+            "antialiased h-dvh w-full flex flex-col overflow-x-hidden overflow-y-auto custom-scrollbar"
+          )}
+        >
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            {children}
+            <Toaster />
+          </ThemeProvider>
+        </body>
+      </SessionProvider>
     </html>
   );
 }

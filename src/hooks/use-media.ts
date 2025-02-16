@@ -17,7 +17,7 @@ export default function useMedia(width = 1024) {
     return () => {
       matchMedia.removeEventListener("change", handleChange);
     };
-  });
+  }, [setStatus, width]);
 
   return status;
 }
