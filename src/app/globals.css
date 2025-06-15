@@ -1,6 +1,14 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@config '../../tailwind.config.ts';
+
+@utility hide-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
 @layer base {
   :root {
@@ -66,24 +74,18 @@
   }
 }
 
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
+@layer utilities {
 
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-::-webkit-scrollbar {
-  width: 4; /* width of the entire scrollbar */
-}
-::-webkit-scrollbar-track {
-  background: transparent; /* color of the tracking area */
-}
-::-webkit-scrollbar-thumb {
-  background-color: hsl(var(--border)); /* color of the scroll thumb */
-  border-radius: 12px;
+  ::-webkit-scrollbar {
+    width: 4; /* width of the entire scrollbar */
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent; /* color of the tracking area */
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--border)); /* color of the scroll thumb */
+    border-radius: 12px;
+  }
 }
 
 @layer base {

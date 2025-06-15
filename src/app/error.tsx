@@ -12,7 +12,7 @@ export default function Error({
 }) {
   return (
     <div className="flex h-full w-full items-center justify-center">
-      <div className="flex flex-col max-w-screen-sm items-center">
+      <div className="flex flex-col max-w-(--breakpoint-sm) items-center">
         <h2 className="font-black text-6xl text-center mb-6">
           Something went wrong!
         </h2>
