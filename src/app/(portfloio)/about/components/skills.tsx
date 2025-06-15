@@ -16,6 +16,9 @@ export default function Skills() {
         "REST API",
         "GraphQL",
         "Redux | Zustand",
+        "Drizzle ORM",
+        "Prisma ORM",
+        "Tanstack",
       ],
     },
     {
@@ -30,6 +33,8 @@ export default function Skills() {
         "MongoDB",
         "SQL",
         "noSQL",
+        "Drizzle ORM",
+        "Prisma ORM",
       ],
     },
     {

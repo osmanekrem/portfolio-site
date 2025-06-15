@@ -9,7 +9,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { projectSchema } from "@/lib/validations";
-import React from "react";
+import React, { use } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
@@ -19,7 +19,7 @@ import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
 import FileUpload from "@/components/file-upload";
-import { createProject } from "@/lib/actions/project";
+import { createProject, updateProject } from "@/lib/actions/project";
 import {
   Select,
   SelectContent,
@@ -27,27 +27,37 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Project } from "@/db/schema";
 
 type ProjectFormProps = {
   type?: "create" | "update";
+  projectPromise?: Promise<Project[]>;
 };
 
-export default function ProjectForm({ type }: ProjectFormProps) {
+export default function ProjectForm({
+  type,
+  projectPromise,
+}: ProjectFormProps) {
   const router = useRouter();
+
+  const project = use(projectPromise ?? Promise.resolve([]))?.[0];
 
   const form = useForm<ProjectFormValues>({
     resolver: zodResolver(projectSchema),
     defaultValues: {
-      title: "",
-      description: "",
-      tags: "",
-      liveUrl: "",
-      image: "",
+      title: project?.title || "",
+      description: project?.description || "",
+      tags: project?.tags || "",
+      liveUrl: project?.liveUrl || "",
+      image: project?.image || "",
     },
   });
 
   const onSubmit = async (values: ProjectFormValues) => {
-    const result = await createProject(values);
+    const result =
+      type === "create"
+        ? await createProject(values)
+        : await updateProject(project?.id, values);
 
     if (result.success) {
       toast({
@@ -166,7 +176,7 @@ export default function ProjectForm({ type }: ProjectFormProps) {
           )}
         />
         <Button type="submit" size="lg" className="w-full">
-          Add Project
+          {type === "create" ? "Add Project" : "Update Project"}
         </Button>
       </form>
     </Form>

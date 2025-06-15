@@ -1,12 +1,33 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Project } from "@/db/schema";
 import config from "@/lib/config";
+import { format } from "date-fns";
 import { IKImage } from "imagekitio-next";
-import React, { use, useState } from "react";
+import { MoreHorizontal } from "lucide-react";
+import Link from "next/link";
+import { use, useState } from "react";
 import { ColumnDef, DataTable, TableOptions } from "tanstack-shadcn-table";
+import ProjectActions from "./project-actions";
 
 const columns: ColumnDef<Project>[] = [
+  {
+    accessorKey: "id",
+    header: "Actions",
+    cell: ({ row }) => {
+      return <ProjectActions project={row.original} />;
+    },
+    size: 80,
+    maxSize: 80,
+    minSize: 80,
+  },
   {
     header: "Title",
     accessorKey: "title",
@@ -14,6 +35,13 @@ const columns: ColumnDef<Project>[] = [
   {
     accessorKey: "description",
     header: "Description",
+    cell: ({ row }) => {
+      return (
+        <span className="!line-clamp-2 text-sm !whitespace-normal">
+          {row.original.description}
+        </span>
+      );
+    },
   },
   {
     accessorKey: "tags",
@@ -43,10 +71,20 @@ const columns: ColumnDef<Project>[] = [
   {
     accessorKey: "liveUrl",
     header: "Live URL",
+    cell: ({ row }) => {
+      return (
+        <Link href={row.original.liveUrl} target="_blank">
+          {row.original.liveUrl}
+        </Link>
+      );
+    },
   },
   {
     accessorKey: "createdAt",
     header: "Created At",
+    cell: ({ row }) => {
+      return <span>{format(row.original.createdAt, "dd/MM/yyyy HH:mm")}</span>;
+    },
   },
 ];
 
@@ -65,5 +103,5 @@ export default function ProjectsTable({
       totalRecords: projectList.length,
     },
   });
-  return <DataTable<Project> tableOptions={tableOptions} />;
+  return <DataTable<Project> tableOptions={tableOptions} className="py-4" />;
 }

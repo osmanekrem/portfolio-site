@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/toaster";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -47,6 +48,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
+      <SpeedInsights />
       <SessionProvider session={session}>
         <body
           className={cn(

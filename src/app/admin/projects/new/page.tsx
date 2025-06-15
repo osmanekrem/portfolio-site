@@ -11,7 +11,7 @@ export default function NewProjectPage() {
         Go Back
       </Link>
 
-      <section className="w-full max-w-2xl overflow-y-auto overflow-x-visible hide-scrollbar">
+      <section className="w-full overflow-y-auto overflow-x-visible hide-scrollbar">
         <ProjectForm type="create" />
       </section>
     </>

@@ -43,3 +43,5 @@ export const projects = pgTable("projects", {
     .notNull()
     .defaultNow(),
 });
+
+export type Project = typeof projects.$inferSelect;
