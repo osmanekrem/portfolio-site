@@ -39,17 +39,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await auth();
-
   return (
     <html lang="en" suppressHydrationWarning>
       <SpeedInsights />
-      <SessionProvider session={session}>
         <body
           className={cn(
             inter.className,
@@ -61,7 +58,6 @@ export default async function RootLayout({
             <Toaster />
           </ThemeProvider>
         </body>
-      </SessionProvider>
     </html>
   );
 }
