@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import React, { Suspense } from "react";
-import ProjectCard from "./components/projectCard";
 import { db } from "@/db/drizzle";
 import { projects } from "@/db/schema";
 import { desc } from "drizzle-orm";

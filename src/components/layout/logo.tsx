@@ -10,6 +10,8 @@ export default function Logo() {
         src="/imgs/logo.png"
         width={180}
         height={180}
+        priority
+
       />
       <span className="w-72 h-72 rounded-full bg-primary opacity-15 z-0 absolute shrink-0 flex bottom-[-10%] right-[-15%]"></span>
     </div>

@@ -1,11 +1,12 @@
-import { auth } from "@/auth";
+import {auth} from "@/auth";
 import Header from "@/components/admin/header";
 import Sidebar from "@/components/admin/sidebar";
 import { db } from "@/db/drizzle";
 import { users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
-import React, { ReactNode } from "react";
+import React, {ReactNode} from "react";
+import {SidebarProvider} from "@/components/ui/sidebar";
 
 export default async function AdminLayout({
   children,
@@ -25,13 +26,18 @@ export default async function AdminLayout({
 
   if (!isAdmin) return redirect("/login");
 
+
+
   return (
     <main className="flex min-h-screen w-full flex-row">
-      <Sidebar session={session} />
+        <SidebarProvider defaultOpen={true}>
+      <Sidebar />
+
       <div className="container flex flex-col flex-1 p-5 sm:p-10">
         <Header />
         {children}
       </div>
+            </SidebarProvider>
     </main>
   );
 }

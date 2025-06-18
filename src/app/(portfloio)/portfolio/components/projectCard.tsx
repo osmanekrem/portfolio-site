@@ -3,7 +3,6 @@
 import { Badge } from "@/components/ui/badge";
 import config from "@/lib/config";
 import { IKImage } from "imagekitio-next";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
