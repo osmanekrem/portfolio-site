@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -104,6 +105,22 @@
     background-color: hsl(var(--border)); /* color of the scroll thumb */
     border-radius: 12px;
   }
+
+
+  .wmde-markdown {
+    @apply prose prose-invert prose-a:text-primary prose-a:no-underline hover:prose-a:underline  w-full max-w-full;
+  }
+
+    .wmde-markdown > p:has(img) {
+        @apply flex justify-center items-center;
+        & > img {
+            @apply xl:!max-w-2xl  rounded-lg border border-border;
+        }
+    }
+
+  .wmde-markdown pre:hover .copied:hover {
+    @apply !bg-primary !text-primary-foreground;
+  }
 }
 
 @layer base {
@@ -116,7 +133,9 @@
   .container {
     @apply max-w-7xl px-4 md:px-20 mx-auto w-full;
   }
+
 }
+
 
 
 @theme inline {
@@ -126,13 +145,6 @@
   --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
   --color-sidebar-border: hsl(var(--sidebar-border));
   --color-sidebar-ring: hsl(var(--sidebar-ring));
-}
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+
 }

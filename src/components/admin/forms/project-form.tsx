@@ -31,7 +31,7 @@ import { Project } from "@/db/schema";
 
 type ProjectFormProps = {
   type?: "create" | "update";
-  projectPromise?: Promise<Project[]>;
+  projectPromise: Promise<Project[]>;
 };
 
 export default function ProjectForm({
@@ -40,7 +40,7 @@ export default function ProjectForm({
 }: ProjectFormProps) {
   const router = useRouter();
 
-  const project = use(projectPromise ?? Promise.resolve([]))?.[0];
+  const project = use(projectPromise)?.[0];
 
   const form = useForm<ProjectFormValues>({
     resolver: zodResolver(projectSchema),
@@ -62,7 +62,7 @@ export default function ProjectForm({
     if (result.success) {
       toast({
         title: "Success",
-        description: "Project created successfully",
+        description: type === "create" ? "Project created successfully" : "Project updated successfully",
       });
       router.push("/admin/projects");
     } else {

@@ -31,6 +31,10 @@ export default function Navbar() {
       path: "/portfolio",
       label: "Portfolio",
     },
+    {
+      path: "/posts",
+      label: "Posts",
+    }
   ];
 
   const isMobile = useMedia(1024);

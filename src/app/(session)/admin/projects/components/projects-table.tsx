@@ -1,17 +1,9 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Project } from "@/db/schema";
 import config from "@/lib/config";
 import { format } from "date-fns";
 import { IKImage } from "imagekitio-next";
-import { MoreHorizontal } from "lucide-react";
 import Link from "next/link";
 import { use, useState } from "react";
 import { ColumnDef, DataTable, TableOptions } from "tanstack-shadcn-table";

@@ -12,7 +12,7 @@ export default function NewProjectPage() {
       </Link>
 
       <section className="w-full overflow-y-auto overflow-x-visible hide-scrollbar">
-        <ProjectForm type="create" />
+        <ProjectForm type="create" projectPromise={Promise.resolve([])} />
       </section>
     </>
   );

@@ -1,8 +1,15 @@
 import Link from "next/link";
 import {buttonVariants} from "@/components/ui/button";
 import React, {Suspense} from "react";
+import PostsTable from "@/app/(session)/admin/posts/components/posts-table";
+import {posts} from "@/db/schema";
+import {db} from "@/db/drizzle";
+import {desc} from "drizzle-orm";
 
 export default function PostsPage() {
+    const postsPromise = db.select().from(posts).orderBy(desc(posts.createdAt));
+
+
     return (
         <section className="w-full">
             <div className="flex flex-wrap items-center justify-between gap-2">
@@ -14,7 +21,7 @@ export default function PostsPage() {
 
             <div className="mt-7 w-full overflow-hidden">
                 <Suspense fallback={<div>Loading...</div>}>
-                    messi
+                    <PostsTable postsPromise={postsPromise} />
                 </Suspense>
             </div>
         </section>

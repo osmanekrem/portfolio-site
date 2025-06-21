@@ -44,4 +44,27 @@ export const projects = pgTable("projects", {
     .defaultNow(),
 });
 
+export const posts = pgTable("posts", {
+  id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
+  title: varchar("title", {
+    length: 255,
+  }).notNull(),
+  content: text("content").notNull(),
+  slug: varchar("slug").notNull(),
+  image: text("image").notNull(),
+  tags: text("tags").notNull(),
+  createdAt: timestamp("created_at", {
+    withTimezone: true,
+  })
+  .notNull()
+  .defaultNow(),
+    updatedAt: timestamp("updated_at", {
+        withTimezone: true,
+    })
+    .notNull()
+    .defaultNow(),
+
+})
+
 export type Project = typeof projects.$inferSelect;
+export type Post = typeof posts.$inferSelect;
