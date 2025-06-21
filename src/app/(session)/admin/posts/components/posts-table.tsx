@@ -6,6 +6,7 @@ import {ColumnDef, DataTable, TableOptions} from "tanstack-shadcn-table";
 import {IKImage} from "imagekitio-next";
 import config from "@/lib/config";
 import PostActions from "@/app/(session)/admin/posts/components/post-actions";
+import PostImage from "@/app/(public)/(portfloio)/posts/[id]/components/post-image";
 
 const columns: ColumnDef<Post>[] = [
     {
@@ -28,19 +29,10 @@ const columns: ColumnDef<Post>[] = [
         header: "Image",
         cell: ({ row }) => {
             return (
-                <IKImage
-                    className="object-cover aspect-video rounded-md"
-                    width={160}
-                    height={90}
-                    alt={row.original.title}
-                    path={row.original.image}
-                    urlEndpoint={config.env.imagekit.urlEndpoint}
-                    loading="lazy"
-                    lqip={{
-                        active: true,
-                        blur: 10,
-                    }}
-                />
+                <div className="w-32 h-18 relative">
+
+                <PostImage  post={row.original} />
+                </div>
             );
         },
     },

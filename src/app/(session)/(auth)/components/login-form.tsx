@@ -55,8 +55,6 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-full w-full">
-      <h1 className="text-4xl font-bold mb-6">Login</h1>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleSubmit)}
@@ -93,6 +91,5 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
           </Button>
         </form>
       </Form>
-    </div>
   );
 }
