@@ -5,6 +5,7 @@ import {analytics} from "@/lib/analytics";
 import { geolocation } from '@vercel/functions'
 
 export default auth((req) => {
+    const url = req.nextUrl.pathname
     const fullMatchRoutes = [
         "/",
         "/about",
@@ -16,14 +17,29 @@ export default auth((req) => {
         "/posts/",
     ]
 
-    const url = req.nextUrl.pathname
+    const authRoutes = [
+        "/login",
+    ]
+
+    const protectedRoutes = [
+        "/admin"
+    ]
+
+    const isAuthRoute = authRoutes.includes(url)
+    const isAuthenticated = !!req.auth
+
+    if(isAuthRoute && isAuthenticated) {
+    return NextResponse.redirect(new URL("/admin", req.url))
+    } else if (protectedRoutes.some(route => (
+        url.startsWith(route) || url === route
+    ))) {
+        const role = req.auth?.user.role
+        if(!isAuthenticated || role !== "ADMIN") {
+            return NextResponse.redirect(new URL("/login", req.url))
+        }
+    }
+
     const {country} = geolocation(req)
-
-    const analyticsEnabled = (
-        fullMatchRoutes.includes(url) ||
-        startsWithMatchRoutes.some(route => url.startsWith(route))
-    )
-
 
     if(fullMatchRoutes.includes(url)) {
 

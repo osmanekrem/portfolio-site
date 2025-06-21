@@ -68,3 +68,5 @@ export const posts = pgTable("posts", {
 
 export type Project = typeof projects.$inferSelect;
 export type Post = typeof posts.$inferSelect;
+export type User = typeof users.$inferSelect;
+export type Role = User["role"];

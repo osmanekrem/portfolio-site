@@ -1,13 +1,8 @@
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
 import React from "react";
 
-export default async function AuthLayout({
+export default function AuthLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const session = await auth();
-
-  if (session) return redirect("/admin");
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-full">
