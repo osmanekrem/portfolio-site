@@ -20,7 +20,6 @@ export function CodeCopyBtn({children}: { children: ReactNode }) {
                  (children as any)?.props?.children ?? ""
 
         );
-        console.log((children as any)?.props?.children ?? "")
 
         setCopyOk(true);
         setTimeout(() => {
@@ -43,8 +42,9 @@ export function CodeCopyBtn({children}: { children: ReactNode }) {
 export default function MarkdownPreview({content}: { content: string }) {
 
     return (
+<div className="wmde-markdown">
 
-        <ReactMarkdown className="wmde-markdown"
+        <ReactMarkdown
                        rehypePlugins={[rehypeRaw]}
                        remarkPlugins={[remarkGfm]}
                        components={{
@@ -79,5 +79,7 @@ export default function MarkdownPreview({content}: { content: string }) {
                        }}>
             {content}
         </ReactMarkdown>
+
+</div>
     )
 }
