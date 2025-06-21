@@ -22,7 +22,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           .where(eq(users.email, credentials.email.toString()))
           .limit(1);
 
-        console.log(user);
 
         if (user.length === 0) {
           return null;
@@ -32,8 +31,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           credentials.password.toString(),
           user[0].password
         );
-
-        console.log(isPasswordValid);
 
         if (!isPasswordValid) {
           return null;

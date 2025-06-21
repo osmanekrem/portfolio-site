@@ -103,7 +103,6 @@ export default function PostForm({
                                             values={field.value.length > 0 ? field.value?.split(",").map((tag: string) => tag.trim()) : []}
                                             onValuesChange={(e) => {
                                                 field.onChange(e.length > 0 ? e.join(',') : '');
-                                                console.log(e)
                                             }}
                                             defaultValue={field.value.length > 0 ? field.value?.split(",").map((tag: string) => tag.trim()) : []}
                                         >

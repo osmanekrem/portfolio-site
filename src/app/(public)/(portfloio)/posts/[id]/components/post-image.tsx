@@ -7,7 +7,6 @@ import {cn} from "@/lib/utils";
 
 export default function PostImage({post}: { post: Post }) {
     const [isLoading, setIsLoading] = useState(true);
-    console.log(isLoading);
     return (
         <div className={cn("aspect-video rounded-md bg-primary/10 !border-none !outline-0 opacity-100", (isLoading ? 'animate-pulse' : ''))}>
             <div className={isLoading ? "opacity-0" : "opacity-100"}>

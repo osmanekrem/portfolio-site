@@ -1,14 +1,10 @@
 
-import {NextResponse} from "next/server";
+import {NextRequest, NextResponse} from "next/server";
 import {analytics} from "@/lib/analytics";
-import NextAuth from "next-auth";
-import {authConfig} from "@/auth.config";
+import {auth} from "@/auth";
 
-const { auth } = NextAuth(authConfig);
 
-export const runtime = "edge";
-
-export default auth((req) => {
+export default async function middleware(req: NextRequest, res: NextResponse) {
     const fullMatchRoutes = [
         "/",
         "/about",
@@ -36,7 +32,7 @@ export default auth((req) => {
       country: req.geo?.country
     })
     } catch (error) {
-
+    console.error(error)
     }
     }  else if (startsWithMatchRoutes.some(route => url.startsWith(route))) {
         try {
@@ -47,12 +43,24 @@ export default auth((req) => {
                 persist: true
             })
         } catch (error) {
-
+            console.error(error)
         }
     }
 
+    try {
+
+        // NextAuth middleware'ini çalıştır
+        const authResult = await auth()
+
+
+    } catch (error) {
+        console.error('Auth error:', error)
+        // Auth hatası durumunda da normal devam et
+        return NextResponse.next()
+    }
+
     return NextResponse.next()
-})
+}
 
 // Optionally, don't invoke Middleware on some paths
 export const config = {
