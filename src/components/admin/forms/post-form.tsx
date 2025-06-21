@@ -12,18 +12,16 @@ import {toast} from "@/hooks/use-toast";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
 import {Textarea} from "@/components/ui/textarea";
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
 import FileUpload from "@/components/file-upload";
 import {Button} from "@/components/ui/button";
 import slugify from "slugify";
-import MultiSelect from "tanstack-shadcn-table/dist/components/custom/multi-select";
 import {
     MultiSelector,
     MultiSelectorContent, MultiSelectorInput,
     MultiSelectorItem, MultiSelectorList,
     MultiSelectorTrigger
 } from "@/components/ui/multi-select";
-import MarkdownPreview from "@uiw/react-markdown-preview";
+import MarkdownPreview from "@/components/markdown-preview";
 
 type PostFormProps = {
     type?: "create" | "update";
@@ -177,7 +175,7 @@ export default function PostForm({
                             </Button>
                         </div>
                         {showMarkdown ? (
-                            <MarkdownPreview source={form.getValues().content} style={{background: "transparent"}} />
+                            <MarkdownPreview  content={form.getValues().content} />
                             ) : (
                         <FormField
                             control={form.control}

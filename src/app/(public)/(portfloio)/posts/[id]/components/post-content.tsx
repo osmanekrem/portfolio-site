@@ -4,7 +4,7 @@ import {Post} from "@/db/schema";
 import React, {use} from "react";
 import {notFound} from "next/navigation";
 import PostImage from "@/app/(public)/(portfloio)/posts/[id]/components/post-image";
-import MarkdownPreview from '@uiw/react-markdown-preview';
+import MarkdownPreview from "@/components/markdown-preview";
 
 export default function PostContent({
     postPromise,
@@ -17,8 +17,9 @@ export default function PostContent({
         return notFound();
     }
 
+
     return (
-        <article className="flex-1 flex h-full flex-col space-y-4">
+        <article className="flex-1 flex h-full flex-col space-y-4" >
             <div className="flex flex-col mt-4 items-start gap-y-2">
             <h1 className="text-2xl mt-4 font-bold">{post.title}</h1>
             <div className="flex flex-col gap-1.5">
@@ -35,7 +36,7 @@ export default function PostContent({
             </div>
             </div>
             <PostImage post={post} />
-            <MarkdownPreview className="mt-2" style={{background: "transparent"}} source={post.content}/>
+            <MarkdownPreview content={post.content} />
             {/* Here you can add more details about the post */}
         </article>)
 }
