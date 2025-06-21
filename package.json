@@ -28,6 +28,7 @@
     "@uiw/react-markdown-preview": "^5.1.4",
     "@upstash/ratelimit": "^2.0.5",
     "@upstash/redis": "^1.34.4",
+    "@vercel/functions": "^2.2.2",
     "@vercel/speed-insights": "^1.2.0",
     "bcryptjs": "^3.0.0",
     "class-variance-authority": "^0.7.1",

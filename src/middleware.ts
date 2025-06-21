@@ -1,10 +1,10 @@
-
-import {NextRequest, NextResponse} from "next/server";
+import { auth } from "@/auth"
+import {NextResponse} from "next/server";
 import {analytics} from "@/lib/analytics";
-import {auth} from "@/auth";
 
+import { geolocation } from '@vercel/functions'
 
-export default async function middleware(req: NextRequest, res: NextResponse) {
+export default auth((req) => {
     const fullMatchRoutes = [
         "/",
         "/about",
@@ -17,6 +17,7 @@ export default async function middleware(req: NextRequest, res: NextResponse) {
     ]
 
     const url = req.nextUrl.pathname
+    const {country} = geolocation(req)
 
     const analyticsEnabled = (
         fullMatchRoutes.includes(url) ||
@@ -29,38 +30,26 @@ export default async function middleware(req: NextRequest, res: NextResponse) {
     try {
     analytics.track("pageview", {
       page: url,
-      country: req.geo?.country
+      country: country
     })
     } catch (error) {
-    console.error(error)
+
     }
     }  else if (startsWithMatchRoutes.some(route => url.startsWith(route))) {
         try {
             analytics.track("pageview", {
                 page: url,
-                country: req.geo?.country
+                country: country
             }, {
                 persist: true
             })
         } catch (error) {
-            console.error(error)
+
         }
     }
 
-    try {
-
-        // NextAuth middleware'ini çalıştır
-        const authResult = await auth()
-
-
-    } catch (error) {
-        console.error('Auth error:', error)
-        // Auth hatası durumunda da normal devam et
-        return NextResponse.next()
-    }
-
     return NextResponse.next()
-}
+})
 
 // Optionally, don't invoke Middleware on some paths
 export const config = {
