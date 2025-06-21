@@ -1,6 +1,12 @@
-import { auth } from "@/auth"
+
 import {NextResponse} from "next/server";
 import {analytics} from "@/lib/analytics";
+import NextAuth from "next-auth";
+import {authConfig} from "@/auth.config";
+
+const { auth } = NextAuth(authConfig);
+
+export const runtime = "edge";
 
 export default auth((req) => {
     const fullMatchRoutes = [

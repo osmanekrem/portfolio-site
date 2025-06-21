@@ -5,11 +5,10 @@ import { eq } from "drizzle-orm";
 import NextAuth, { User } from "next-auth";
 
 import CredentialsProvider from "next-auth/providers/credentials";
+import {authConfig} from "@/auth.config";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  session: {
-    strategy: "jwt",
-  },
+  ...authConfig,
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
@@ -48,25 +47,4 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
     }),
   ],
-  pages: {
-    signIn: "/login",
-  },
-  callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-        token.name = user.name;
-      }
-
-      return token;
-    },
-    async session({ session, token }) {
-      if (session.user) {
-        session.user.id = token.id as string;
-        session.user.name = token.name as string;
-      }
-
-      return session;
-    },
-  },
 });
