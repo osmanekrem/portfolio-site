@@ -4,9 +4,12 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/toaster";
-import { SessionProvider } from "next-auth/react";
-import { auth } from "@/auth";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import {
+  generatePersonSchema,
+  generateWebSiteSchema,
+  jsonLdScriptProps,
+} from "@/lib/schema";
 
 const inter = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -44,20 +47,35 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Sosyal medya profillerini burada tanımlayın
+  const socialProfiles = {
+    github: "osmanekrem",
+    linkedin: "osmanekrem",
+    twitter: "osmanekrem",
+  };
+
+  // Schema.org verilerini oluştur
+  const personSchema = generatePersonSchema(socialProfiles);
+  const websiteSchema = generateWebSiteSchema();
+
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script {...jsonLdScriptProps(personSchema)} />
+        <script {...jsonLdScriptProps(websiteSchema)} />
+      </head>
       <SpeedInsights />
-        <body
-          className={cn(
-            inter.className,
-            "antialiased h-dvh w-full flex flex-col overflow-x-hidden overflow-y-auto custom-scrollbar"
-          )}
-        >
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            {children}
-            <Toaster />
-          </ThemeProvider>
-        </body>
+      <body
+        className={cn(
+          inter.className,
+          "antialiased h-dvh w-full flex flex-col overflow-x-hidden overflow-y-auto custom-scrollbar"
+        )}
+      >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+          <Toaster />
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
