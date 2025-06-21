@@ -168,8 +168,8 @@ export function generatePortfolioSchema() {
 export function jsonLdScriptProps(data: any) {
   return {
     type: "application/ld+json",
-    dangerouslySetInnerHTML: {
-      __html: JSON.stringify(data),
-    },
+    dangerouslySetInnerHTML:{
+    __html: JSON.stringify(data).replace(/</g, '\\u003c'),
+  }
   };
 }
