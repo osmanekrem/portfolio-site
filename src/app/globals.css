@@ -108,7 +108,7 @@
 
 
   .wmde-markdown {
-    @apply prose  prose-a:text-primary prose-a:no-underline hover:prose-a:underline text-foreground w-full max-w-full;
+    @apply prose  prose-a:text-primary prose-strong:text-foreground prose-a:no-underline hover:prose-a:underline text-foreground w-full max-w-full;
 
     & > h1, & > h2, & > h3, & > h4, & > h5, & > h6 {
       @apply font-semibold text-foreground;
@@ -155,6 +155,10 @@
 
     & > blockquote {
       @apply border-l-2 border-border pl-4 italic text-muted-foreground;
+    }
+
+    & > strong {
+      @apply font-semibold !text-foreground;
     }
   }
 

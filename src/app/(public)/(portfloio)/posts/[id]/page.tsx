@@ -15,11 +15,12 @@ export async function generateStaticParams() {
     id: post.slug,
   }));
 }
-export async function generateMetadata({ params }: { params: { id: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
   const post = await db
     .select()
     .from(posts)
-    .where(eq(posts.slug, params.id))
+    .where(eq(posts.slug, id))
     .limit(1)
     .then((posts) => posts[0]);
 
@@ -67,12 +68,14 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 export default async function PostDetailPage({
   params,
 }: {
-  params: { id: string };
+
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
   const post = await db
     .select()
     .from(posts)
-    .where(eq(posts.slug, params.id))
+    .where(eq(posts.slug, id))
     .limit(1)
     .then((posts) => posts[0]);
 
@@ -83,7 +86,7 @@ export default async function PostDetailPage({
   const relatedPosts = await db
     .select()
     .from(posts)
-    .where(not(eq(posts.slug, params.id)))
+    .where(not(eq(posts.slug, id)))
     .orderBy(asc(posts.createdAt))
     .limit(3);
 

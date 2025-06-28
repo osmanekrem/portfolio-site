@@ -68,7 +68,7 @@ export default function MarkdownPreview({content}: { content: string }) {
                                        {String(children).replace(/\n$/, '')}
                                    </SyntaxHighlighter>
                                ) : (
-                                   <code className={'p-2 px-3 rounded-md before:hidden after:hidden'} style={{
+                                   <code className={'p-1 px-1.5 rounded-md before:hidden after:hidden'} style={{
                                        color: 'var(--tw-prose-pre-code)',
                                        backgroundColor: 'var(--tw-prose-pre-bg)'
                                    }} {...props}>
