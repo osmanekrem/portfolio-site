@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       description: post.content.substring(0, 160),
       images: [
         {
-          url: post.image || "/default-image.jpg",
+          url: (process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT + post.image) || "/default-image.jpg",
           alt: post.title,
         },
       ],
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       description: post.content.substring(0, 160),
       images: [
         {
-          url: post.image || "/default-image.jpg",
+          url: (process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT + post.image) || "/default-image.jpg",
           width: 1024,
           height: 576,
           alt: post.title,
