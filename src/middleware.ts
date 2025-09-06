@@ -1,11 +1,12 @@
-import { auth } from "@/auth"
-import {NextResponse} from "next/server";
+import {NextRequest, NextResponse} from "next/server";
 import {analytics} from "@/lib/analytics";
 
 import { geolocation } from '@vercel/functions'
+import {getSessionCookie} from "better-auth/cookies";
 
-export default auth((req) => {
-    const url = req.nextUrl.pathname
+export async function middleware(request: NextRequest)  {
+    const url = request.nextUrl.pathname
+    const sessionCookie = getSessionCookie(request);
     const fullMatchRoutes = [
         "/",
         "/about",
@@ -26,20 +27,18 @@ export default auth((req) => {
     ]
 
     const isAuthRoute = authRoutes.includes(url)
-    const isAuthenticated = !!req.auth
 
-    if(isAuthRoute && isAuthenticated) {
-    return NextResponse.redirect(new URL("/admin", req.url))
+    if(isAuthRoute && sessionCookie) {
+    return NextResponse.redirect(new URL("/admin", request.url))
     } else if (protectedRoutes.some(route => (
         url.startsWith(route) || url === route
     ))) {
-        const role = req.auth?.user.role
-        if(!isAuthenticated || role !== "ADMIN") {
-            return NextResponse.redirect(new URL("/login", req.url))
+        if(!sessionCookie) {
+            return NextResponse.redirect(new URL("/login", request.url))
         }
     }
 
-    const {country} = geolocation(req)
+    const {country} = geolocation(request)
 
     if(fullMatchRoutes.includes(url)) {
 
@@ -65,7 +64,7 @@ export default auth((req) => {
     }
 
     return NextResponse.next()
-})
+}
 
 // Optionally, don't invoke Middleware on some paths
 export const config = {

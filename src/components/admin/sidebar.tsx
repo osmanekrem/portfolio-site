@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import {usePathname} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 import React from "react";
 
 import {
@@ -22,6 +22,7 @@ import {
     SidebarMenu
 } from "@/components/ui/sidebar"
 import {signOut} from "next-auth/react";
+import {authClient} from "@/lib/auth-client";
 
 const sidebarLinks = [
     {
@@ -42,7 +43,8 @@ const sidebarLinks = [
 ];
 
 export default function AdminSidebar() {
-    const pathname = usePathname();
+    const pathname = usePathname()
+    const router =useRouter()
 
     return (
         <Sidebar>
@@ -86,7 +88,15 @@ export default function AdminSidebar() {
             </SidebarContent>
             <SidebarFooter>
                 <button
-                    onClick={() => signOut()}
+                    onClick={async () => {
+                        await authClient.signOut({
+                            fetchOptions: {
+                                onSuccess: () => {
+                                    router.push("/login");
+                                },
+                            }
+                        })
+                    }}
                     className="flex shrink-0 items-center w-full gap-2 rounded-lg px-5 py-3.5  hover:bg-primary/10">
                     <LogOutIcon className="size-5"/>
                     <p className="text-base font-medium">Logout</p>

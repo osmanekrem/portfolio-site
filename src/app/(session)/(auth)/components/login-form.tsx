@@ -16,17 +16,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { LoginFormValues } from "@/types";
 import { toast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
+import {authClient} from "@/lib/auth-client";
 
-type LoginFormProps = {
-  onSubmit: (
-    data: LoginFormValues
-  ) => Promise<{ success: boolean; error?: string }>;
-};
-
-export default function LoginForm({ onSubmit }: LoginFormProps) {
-  const router = useRouter();
-
+export default function LoginForm() {
   const form = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -36,20 +28,23 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
   });
 
   const handleSubmit = async (values: LoginFormValues) => {
-    const result = await onSubmit(values);
+    const result = await authClient.signIn.email({
+            email: values.email,
+            password: values.password,
+        callbackURL: "/admin",
+    })
 
-    if (result.success) {
-      toast({
-        title: "Login successful",
-        description: "You have been logged in",
-      });
-      router.push("/admin");
+    if (result.data?.token && !result.error) {
+        toast({
+            title: "Login successful",
+            description: "You have been logged in",
+        });
     } else {
-      toast({
-        title: "Login failed",
-        description: result.error,
-        variant: "destructive",
-      });
+        toast({
+            title: "Login failed",
+            description: result.error?.message,
+            variant: "destructive",
+        });
     }
   };
 

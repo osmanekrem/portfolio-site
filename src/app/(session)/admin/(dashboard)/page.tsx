@@ -1,5 +1,5 @@
 import { db } from "@/db/drizzle";
-import {posts, projects, users} from "@/db/schema";
+import {posts, projects, user} from "@/db/schema";
 import React, { Suspense } from "react";
 import Statistics from "./components/statistics";
 import {analytics} from "@/lib/analytics";
@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 export default async function DashboardPage() {
   const usersPromise = db
     .select()
-    .from(users)
+    .from(user)
     .then((res) => res.length);
 
   const projectsPromise = db
