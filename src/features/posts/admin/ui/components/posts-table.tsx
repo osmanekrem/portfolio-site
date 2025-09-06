@@ -5,8 +5,8 @@ import React, {use, useState} from "react";
 import {ColumnDef, DataTable, TableOptions} from "tanstack-shadcn-table";
 import {IKImage} from "imagekitio-next";
 import config from "@/lib/config";
-import PostActions from "@/app/(session)/admin/posts/components/post-actions";
-import PostImage from "@/app/(public)/(portfloio)/posts/[id]/components/post-image";
+import PostActions from "@/features/posts/admin/ui/components/post-actions";
+import PostImage from "@/features/posts/public/ui/components/post-image";
 
 const columns: ColumnDef<Post>[] = [
     {

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import {buttonVariants} from "@/components/ui/button";
 import React, {Suspense} from "react";
-import PostsTable from "@/app/(session)/admin/posts/components/posts-table";
+import PostsTable from "@/features/posts/admin/ui/components/posts-table";
 import {posts} from "@/db/schema";
 import {db} from "@/db/drizzle";
 import {desc} from "drizzle-orm";

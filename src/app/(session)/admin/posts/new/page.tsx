@@ -1,7 +1,7 @@
 import Link from "next/link";
 import {cn} from "@/lib/utils";
 import {buttonVariants} from "@/components/ui/button";
-import PostForm from "@/components/admin/forms/post-form";
+import PostForm from "@/features/posts/admin/ui/views/post-form";
 import React from "react";
 
 export default function NewPostPage() {

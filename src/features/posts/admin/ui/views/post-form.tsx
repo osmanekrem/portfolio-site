@@ -4,10 +4,7 @@ import {Post} from "@/db/schema";
 import {useRouter} from "next/navigation";
 import React, {use, useState} from "react";
 import {useForm} from "react-hook-form";
-import {PostFormValues} from "@/types";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {postSchema} from "@/lib/validations";
-import {createPost, updatePost} from "@/lib/actions/post";
 import {toast} from "@/hooks/use-toast";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
@@ -17,11 +14,15 @@ import {Button} from "@/components/ui/button";
 import slugify from "slugify";
 import {
     MultiSelector,
-    MultiSelectorContent, MultiSelectorInput,
-    MultiSelectorItem, MultiSelectorList,
+    MultiSelectorContent,
+    MultiSelectorInput,
+    MultiSelectorItem,
+    MultiSelectorList,
     MultiSelectorTrigger
 } from "@/components/ui/multi-select";
 import MarkdownPreview from "@/components/markdown-preview";
+import {PostFormValues, postSchema} from "@/features/posts/admin/schemas";
+import {createPost, updatePost} from "@/features/posts/admin/lib/actions";
 
 type PostFormProps = {
     type?: "create" | "update";
@@ -49,8 +50,7 @@ export default function PostForm({
     const [showMarkdown, setShowMarkdown] = useState(false);
 
     const onSubmit = async (values: PostFormValues) => {
-        const slug = slugify(values.title)
-        values.slug = slug;
+        values.slug = slugify(values.title);
         const result =
             type === "create"
                 ? await createPost(values)

@@ -1,5 +1,5 @@
 import { Post } from "@/db/schema";
-import PostCard from "@/app/(public)/(portfloio)/posts/components/post-card";
+import PostCard from "@/features/posts/public/ui/components/post-card";
 
 export default function LatestPosts({ posts }: { posts: Post[] }) {
   return (

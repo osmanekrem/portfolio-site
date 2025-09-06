@@ -3,11 +3,12 @@ import { db } from "@/db/drizzle";
 import { posts } from "@/db/schema";
 import { asc, eq, not } from "drizzle-orm";
 import { notFound } from "next/navigation";
-import PostContent from "@/app/(public)/(portfloio)/posts/[id]/components/post-content";
-import LatestPosts from "@/app/(public)/(portfloio)/posts/[id]/components/latest-posts";
+import PostContent from "@/features/posts/public/ui/components/post-content";
+import LatestPosts from "@/features/posts/public/ui/components/latest-posts";
 import { generateBlogPostSchema, jsonLdScriptProps } from "@/lib/schema";
+import {Metadata} from "next";
 
-export const revalidate = 86400;
+export const revalidate = 60;
 export async function generateStaticParams() {
   const allPosts = await db.select().from(posts);
 
@@ -15,7 +16,7 @@ export async function generateStaticParams() {
     id: post.slug,
   }));
 }
-export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
     const { id } = await params;
   const post = await db
     .select()

@@ -1,4 +1,4 @@
-import PostForm from "@/components/admin/forms/post-form";
+import PostForm from "@/features/posts/admin/ui/views/post-form";
 import { buttonVariants } from "@/components/ui/button";
 import { db } from "@/db/drizzle";
 import { posts } from "@/db/schema";

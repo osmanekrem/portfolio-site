@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {Post} from "@/db/schema";
 import { toast } from "@/hooks/use-toast";
-import {deletePost} from "@/lib/actions/post";
+import {deletePost} from "@/features/posts/admin/lib/actions";
 
 export default function PostActions({ post }: { post: Post }) {
   const [isDeleting, setIsDeleting] = useState(false);

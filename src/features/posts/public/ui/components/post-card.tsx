@@ -3,7 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import React from "react";
-import PostImage from "@/app/(public)/(portfloio)/posts/[id]/components/post-image";
+import PostImage from "@/features/posts/public/ui/components/post-image";
 import {Post} from "@/db/schema";
 
 type Props = {

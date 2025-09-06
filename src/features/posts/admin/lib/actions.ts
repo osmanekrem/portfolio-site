@@ -3,14 +3,14 @@
 import {db} from "@/db/drizzle";
 import {posts} from "@/db/schema";
 import {eq} from "drizzle-orm";
-import {PostFormValues} from "@/types";
+import {PostFormValues} from "@/features/posts/admin/schemas";
 
 export const createPost = async (params: PostFormValues) => {
     try {
         const newPost = await db
             .insert(posts)
             .values({
-                ...params,
+                ...params
             })
             .returning();
 
@@ -31,7 +31,7 @@ export const updatePost = async (id: string, params: PostFormValues) => {
     try {
         const updatedPost = await db
             .update(posts)
-            .set({ ...params })
+            .set(params)
             .where(eq(posts.id, id))
             .returning();
 

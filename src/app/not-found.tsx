@@ -1,5 +1,3 @@
-import Footer from '@/components/footer'
-import Header from '@/components/Header'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { HomeIcon } from 'lucide-react'
@@ -10,7 +8,6 @@ export default function NotFound() {
     return (
       <>
       <main className="max-w-7xl px-4 md:px-20 mx-auto w-full flex flex-col flex-1">
-        <Header />
         <div className='flex h-full w-full items-center justify-center'>
         <div className='flex flex-col items-center'>
 
@@ -21,7 +18,6 @@ export default function NotFound() {
         </div>
       </div>
       </main>
-      <Footer />
     </>
       
     )

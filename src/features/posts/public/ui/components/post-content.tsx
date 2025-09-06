@@ -3,7 +3,7 @@
 import { Post } from "@/db/schema";
 import React from "react";
 import { notFound } from "next/navigation";
-import PostImage from "@/app/(public)/(portfloio)/posts/[id]/components/post-image";
+import PostImage from "@/features/posts/public/ui/components/post-image";
 import MarkdownPreview from "@/components/markdown-preview";
 
 export default function PostContent({ post }: { post: Post }) {
