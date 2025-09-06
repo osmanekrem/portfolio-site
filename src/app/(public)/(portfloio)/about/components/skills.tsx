@@ -1,48 +1,46 @@
 import { Badge } from "@/components/ui/badge";
 import React from "react";
-
+const skillSet = [
+  {
+    name: "Web Development",
+    skills: [
+      "HTML/CSS | SCSS",
+      "Tailwind CSS",
+      "ReactJS | Next.js",
+      "Angular",
+      "Node.js",
+      "Express.js",
+      "Hono.js",
+      "REST API",
+      "GraphQL",
+      "Redux | Zustand",
+      "Drizzle ORM",
+      "Prisma ORM",
+      "Tanstack",
+    ],
+  },
+  {
+    name: "Software Engineering / Software Development",
+    skills: [
+      "Python",
+      "Java",
+      "JavaScript",
+      "TypeScript",
+      "Swift",
+      "Git",
+      "MongoDB",
+      "SQL",
+      "noSQL",
+      "Drizzle ORM",
+      "Prisma ORM",
+    ],
+  },
+  {
+    name: "Design and Multimedia",
+    skills: ["Photoshop", "Premiere Pro", "Blender"],
+  },
+];
 export default function Skills() {
-  const skillSet = [
-    {
-      name: "Web Development",
-      skills: [
-        "HTML/CSS | SCSS",
-        "Tailwind CSS",
-        "ReactJS | Next.js",
-        "Angular",
-        "Node.js",
-        "Express.js",
-        "Hono.js",
-        "REST API",
-        "GraphQL",
-        "Redux | Zustand",
-        "Drizzle ORM",
-        "Prisma ORM",
-        "Tanstack",
-      ],
-    },
-    {
-      name: "Software Engineering / Software Development",
-      skills: [
-        "Python",
-        "Java",
-        "JavaScript",
-        "TypeScript",
-        "Swift",
-        "Git",
-        "MongoDB",
-        "SQL",
-        "noSQL",
-        "Drizzle ORM",
-        "Prisma ORM",
-      ],
-    },
-    {
-      name: "Design and Multimedia",
-      skills: ["Photoshop", "Premiere Pro", "Blender"],
-    },
-  ];
-
   return (
     <div className="flex flex-col gap-y-4 w-full">
       <h2 className="text-2xl font-semibold">Skills</h2>
